@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HAC 서비스 기본 개념 &mdash; Basic Sphinx Example Project  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Basic Sphinx Example Project
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../newfile.html">newfile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../newnewfile.html">newnewfile</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../newfile.html">newfile</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Basic Sphinx Example Project</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>HAC 서비스 기본 개념</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/HAC/1_HAC 서비스 기본 개념.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hac">
+<h1>HAC 서비스 기본 개념<a class="headerlink" href="#hac" title="Permalink to this headline"></a></h1>
+<p><strong>이 문서는 HAC 서비스 기본 개념 및 작동 방법을 안내합니다.</strong></p>
+<p><strong>Q. HAC이란 무엇인가요?</strong></p>
+<p><strong>A.</strong> KT Hyperscale AI Computing 서비스는 인공지능 학습/추론을 위한 유연하고 확장성 높은 AI 가속기(accelerator)를 제공하는 서비스입니다. AI 가속기 위에서 PyTorch 기반 딥러닝 프로그램을 고성능으로 실행할 수 있습니다.</p>
+<hr class="docutils" />
+<p><strong>Q. Hyperscale AI Computing 서비스는 일반 GPU 서버와 어떤 차이점이 있나요?</strong></p>
+<p><strong>A.</strong> Hyperscale AI Computing 서비스는 물리 GPU를 제공하는 대신 “KT AI Accelerator”라는 가상의 AI 가속기를 제공합니다. 기존 GPU 서버에서는 CUDA를 설치하고 CUDA 기반의 PyTorch를 설치하여 GPU를 사용하였습니다. 반면 Hyperscale AI Computing 서비스에서는 KT Cloud가 별도로 제공하는 PyTorch 버전을 사용해야 합니다. 여기에는 GPU 가상화 및 자동 병렬화를 위한 기능이 함께 포함되어 있습니다.</p>
+<p><img alt="GPUvsHAC" src="image/GPUvsHAC.png" /></p>
+<p>기존 GPU 서버와 Hyperscale AI Computing 서비스 간의 차이점을 정리하자면 위와 같습니다.</p>
+<hr class="docutils" />
+<p><strong>Q. 별도의 CUDA 기반 third-party library를 사용하여 HAC을 실행할 수 있나요?</strong></p>
+<p><strong>A.</strong> 아니오. PyTorch API를 사용하지 않고 CUDA를 직접 사용하거나 별도의 CUDA 기반 third-party library를 사용하는 경우 Hyperscale AI Computing 서비스에서 실행이 불가능합니다. 이 경우 일반 GPU Server를 사용하여 주십시오.</p>
+<hr class="docutils" />
+<p><strong>Q. Hyperscale AI Computing은 어떤 방식으로 GPU 자원을 사용하게 되나요?</strong></p>
+<p><strong>A.</strong> PyTorch와 함께 설치되는 Hyperscale AI Computing 지원 플러그인이 GPU 자원의 할당 및 사용을 위한 모든 작업을 자동으로 수행합니다.</p>
+<p>먼저 PyTorch 프로그램이 실행되면 서버에 요청을 보내 resource farm에 위치하는 GPU 자원을 하나 이상 할당받습니다. 화면에 다음과 같은 메시지가 표시되면 GPU 자원에 연결이 완료된 것입니다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">Requesting</span> <span class="n">resources</span> <span class="k">for</span> <span class="n">KT</span> <span class="n">AI</span> <span class="n">Accelerator</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">server</span><span class="o">...</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">Initializing</span> <span class="n">the</span> <span class="n">worker</span> <span class="n">daemon</span> <span class="k">for</span> <span class="n">KT</span> <span class="n">AI</span> <span class="n">Accelerator</span><span class="o">...</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">]</span> <span class="n">Connecting</span> <span class="n">to</span> <span class="n">resources</span> <span class="n">on</span> <span class="n">the</span> <span class="n">server</span> <span class="p">(</span><span class="mf">192.168.00.00</span><span class="p">:</span><span class="mi">00000</span><span class="p">)</span><span class="o">...</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">Establishing</span> <span class="n">links</span> <span class="n">to</span> <span class="n">the</span> <span class="n">resources</span><span class="o">...</span>
+<span class="p">[</span><span class="n">info</span><span class="p">]</span> <span class="n">KT</span> <span class="n">AI</span> <span class="n">Accelerator</span> <span class="ow">is</span> <span class="n">ready</span> <span class="n">to</span> <span class="n">use</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>이후 PyTorch 프로그램이 실행되면서 GPU 연산을 요청하면 이것을 원격에 위치한 GPU에 오프로딩(offloading)하게 됩니다. VM은 resource farm과 전용 네트워크로 연결되어 있으며 그 외의 물리적인 장치를 사용하지 않습니다.</p>
+<p>AI 가속기의 사양이 높아지면 PyTorch 프로그램을 실행하기 위해 수~수십 개의 GPU를 동시에 사용할 수도 있습니다. 하지만 사용자는 이를 위해 PyTorch 프로그램을 DataParallel, DistributedDataParallel 등을 사용해 병렬화할 필요가 전혀 없습니다. AI 가속기에서는 단일 GPU를 위한 PyTorch 프로그램을 실행하면 됩니다. Hyperscale AI Computing 컴파일러가 자동으로 연산 작업을 병렬화하여 여러 GPU 자원에서 분산 처리합니다.</p>
+<hr class="docutils" />
+<p>Copyright © 2022 Moreh Corporation</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Read the Docs core team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

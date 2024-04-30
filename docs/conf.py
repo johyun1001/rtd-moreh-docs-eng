@@ -13,13 +13,23 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
+import re
+import json
+import urllib.request
+
+from sphinx.errors import SphinxError
+from pygments.lexers.data import YamlLexer
+
+sys.path.append(os.path.abspath('_extensions'))
 
 
 # -- Project information -----------------------------------------------------
 
-project = "Moreh Docs"
-copyright = "2024, Moreh"
-author = "CX"
+project = "Develop with Moreh Documentation"
+copyright = "Develop with Moreh Documentation"
+author = "johyun an"
 
 
 # -- General configuration ---------------------------------------------------
@@ -31,16 +41,49 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
+    "hoverxref.extension",
+    "sphinx_tabs.tabs",
+    "sphinx_rtd_theme",
+    "sphinx.ext.mathjax",
+    "sphinx.ext.viewcode",
+    "sphinxcontrib.httpdomain",
+    "myst_parser",
+    "sphinx_design",
 ]
 
+bibtex_bibfiles = ['refs.bib']
+
 intersphinx_mapping = {
-    "rtd": ("https://docs.readthedocs.io/en/stable/", None),
-    "python": ("https://docs.python.org/3/", None),
-    "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
+    'readthedocs': ('https://docs.readthedocs.io/en/stable/', None),
+    'sphinx': ('https://www.sphinx-doc.org/en/master/', None),
+    'sympy': ('https://docs.sympy.org/latest/', None),
+    'numpy': ('https://numpy.org/doc/stable/', None),
+    'python': ('https://docs.python.org/3/', None),
+
 }
-intersphinx_disabled_domains = ["std"]
+
 
 templates_path = ["_templates"]
+
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.txt': 'markdown',
+    '.md': 'markdown',
+}
+hoverxref_intersphinx = [
+    "sphinx",
+    "readthedocs",
+    "python",
+    "sympy",
+    "numpy",
+]
+
+
+hoverxref_intersphinx_types = {
+    'readthedocs': 'modal',
+    'sphinx': 'tooltip',
+}
+
 
 # -- Options for EPUB output
 epub_show_urls = "footnote"
@@ -50,6 +93,11 @@ epub_show_urls = "footnote"
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
+sphinx_tabs_valid_builders = ["linkcheck"]
+
+
+
+pygments_style = "sphinx"
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -57,7 +105,20 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 #
 html_theme = "sphinx_rtd_theme"
 
+
+#html_css_files = ["css/custom.css", "css/sphinx_prompt_css.css"]
+#html_js_files = ["js/expand_tabs.js"]
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ["_static"]
+
+#html_static_path = ["_static"]
+
+
+# -- Custom Pygments lexers for OpenAPI -----------------------------------
+
+
+#sphinx_tabs_disable_tab_closing = True
+
+#sphinx_tabs_disable_css_loading = True
