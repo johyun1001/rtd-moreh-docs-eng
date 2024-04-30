@@ -12,7 +12,9 @@ Develop with Moreh Documentation
 .. toctree::
    :maxdepth: 4
    :caption: Tutorials
-   Tutorials/Baichuan2/1_Fine-tuning_준비하기.md
+   Tutorials/Baichuan2/1_Finetuning_준비하기.md
+   
+
 
 .. toctree::
    :maxdepth: 3
@@ -20,3 +22,4 @@ Develop with Moreh Documentation
 
    MoAIFAQ/서비스 기본 개념.md
    MoAIFAQ/자주 묻는 질문.md
+   MoAIFAQ/1_Finetuning_준비하기.md
