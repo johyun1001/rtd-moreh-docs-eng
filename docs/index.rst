@@ -13,7 +13,7 @@ Develop with Moreh Documentation
 .. toctree::
    :maxdepth: 3
    :caption: Tutorials
-   Tutorials/Baichuan2/1. Fine-tuning_준비하기.md
+   Tutorials/Baichuan2/1_Fine-tuning_준비하기.md
 
 .. toctree::
    :maxdepth: 3
