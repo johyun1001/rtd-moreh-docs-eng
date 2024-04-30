@@ -8,7 +8,7 @@ Develop with Moreh Documentation
    :caption: About MoAI:
 
    Home <self>
-   About/about.md
+   /About/about.md
    
 .. toctree::
    :maxdepth: 3
