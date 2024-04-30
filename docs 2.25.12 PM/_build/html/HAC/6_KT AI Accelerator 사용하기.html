@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; Basic Sphinx Example Project  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Basic Sphinx Example Project
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../newfile.html">newfile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../newnewfile.html">newnewfile</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../newfile.html">newfile</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Basic Sphinx Example Project</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/HAC/6_KT AI Accelerator 사용하기.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p># KT AI Accelerator 사용하기</p>
+<p>이 문서는 하나의 Token을 가진 사용자가 여러 개의 디바이스 종류를 추가/삭제/선택하는 방법이 명세되어있습니다.</p>
+<p><strong>KT AI Accelerator란?</strong></p>
+<p>&lt;aside&gt;
+KT HAC 서비스의 KT AI Accelerator 는 Token 1개당 1개 이상의 디바이스 종류를 생성/삭제할 수 있는 기능을 지원합니다. 하나 이상의 디바이스가 지원되는 것과 동시에 사용자 친화적으로 인터페이스가 구성되어 사용자가 특별한 주의를 기울이지 않더라도 하나의 Token으로 여러개의 디바이스의 프로세스를 유연하게 실행할 수 있습니다.
+&lt;/aside&gt;</p>
+<p>—
+<strong>기존 가속기와 KT AI Accelerator의 차이점</strong></p>
+<p>기존 가속기 모델은 <cite>moreh-switch-model</cite> 명령어로 AI 학습 수행할 시 GPU 자원의 종류를 small, medium, large, etc 까지 고를 수 있게 하는 기능을 담당합니다. 반면에, KT AI Accelerator는 여러개의 GPU 묶음을 할당하여 병렬 학습을 진행할 수 있습니다.</p>
+<p>—</p>
+<p><strong>KT AI Accelerator는 아래 4가지 명령어로 사용할 수 있습니다.</strong></p>
+<ol class="arabic simple">
+<li><p><cite>moreh-smi device –add</cite> - KT AI Accelerator 디바이스 생성하기</p></li>
+<li><p><cite>moreh-smi device –rm</cite> - KT AI Accelerator 디바이스 삭제하기</p></li>
+<li><p><cite>moreh-smi device –switch</cite> - KT AI Accelerator 생성된 디바이스 변경하기</p></li>
+<li><p><cite>moreh-smi -i</cite> - KT AI Accelerator 디바이스의 활용 상태 모니터링하기</p></li>
+</ol>
+<p>—</p>
+<p>## 1. KT AI Accelerator 디바이스 생성하기</p>
+<p><strong>`moreh-smi device –add`</strong> 커맨드를 입력하면 moreh-switch-model과 동일한 인터페이스가 아래와 같이 등장합니다.</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>bash
+Current KT AI Accelerator: Medium.128GB</p>
+<ol class="arabic simple">
+<li><p>Small.64GB</p></li>
+<li><p>Medium.128GB*</p></li>
+<li><p>Large.256GB</p></li>
+<li><p>xLarge.512GB</p></li>
+<li><p>2xLarge.1024GB</p></li>
+<li><p>3xLarge.1536GB</p></li>
+<li><p>4xLarge.2048GB</p></li>
+<li><p>6xLarge.3072GB</p></li>
+<li><p>8xLarge.4096GB</p></li>
+<li><p>12xLarge.6144GB</p></li>
+<li><p>24xLarge.12288GB</p></li>
+<li><p>1.5xLarge.768GB</p></li>
+</ol>
+<p>Selection (1-12, q, Q):
+<a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<p>1~12 중 사용할 모델에 해당하는 정수를 입력하면 선택된 모델로 변경되었다는 메시지와 함께 해당 디바이스 모델이 생성됩니다.</p>
+<ul>
+<li><p><cite>moreh-smi device –add {SDA id}</cite> 입력 예시</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">#</span> <span class="pre">Large.256GBSDA</span> <span class="pre">모델을</span> <span class="pre">생성</span>
+<span class="pre">moreh-smi</span> <span class="pre">device</span> <span class="pre">add</span> <span class="pre">3</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+</li>
+</ul>
+<p>## 2. KT AI Accelerator 디바이스 삭제하기</p>
+<p><strong>`moreh-smi device –rm`</strong> 명령어를 입력하면 device가 삭제되며 가속기 디바이스 목록에서 마지막에 사용한 디바이스가 디폴트로 표시됩니다.</p>
+<p>특정 Device_ID에 해당하는 모델을 삭제하려면 <cite>moreh-smi device rm {Device_ID}</cite> 명령어를 입력하세요.</p>
+<ul>
+<li><p><cite>moreh-smi device rm {Device_ID}</cite> 입력 예시</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">moreh-smi</span> <span class="pre">rm</span> <span class="pre">2026</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+</li>
+</ul>
+<p>아래 명령어를 입력하면 디바이스 목록의 모든 모델들을 삭제합니다.</p>
+<ul class="simple">
+<li><p><cite>moreh-smi device rm –all</cite></p></li>
+</ul>
+<p>## 3. KT AI Accelerator 생성된 디바이스 변경하기</p>
+<p><strong>`moreh-smi device –switch {Device_ID}`</strong> 명령어를 입력하면 이미 생성된 디바이스의 ID에 해당하는 디바이스로 변경됩니다.</p>
+<ul>
+<li><p><cite>moreh-smi device –switch {Device_ID}</cite> 입력 예시</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">moreh-smi</span> <span class="pre">device</span> <span class="pre">--switch</span> <span class="pre">2027</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+</li>
+</ul>
+<p>기존 디바이스에서 2027 ID에 해당하는 디바이스로 변경됩니다.</p>
+<p>## 4. KT AI Accelerator 디바이스의 활용 상태 모니터링하기</p>
+<p><strong>`moreh-smi -i {Device_ID}`</strong> 명령어로 딥러닝 모델 훈련에 사용하는 GPU 장치(디바이스)가 무엇인지, GPU Client Version과 Server Version 정보와 모델 훈련 중에 GPU의 총 메모리 중에서 현재 활용되고 있는 메모리와 성능이 어느 정도 인지 등을 모니터링할 때 moreh-smi 유틸리티를 사용합니다.</p>
+<ul class="simple">
+<li><p><strong>`moreh-smi -i {Device_ID}`</strong></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">moreh-smi</span> <span class="pre">-i</span> <span class="pre">2026</span>
+<span class="pre">`</span></code></p>
+<p>위 명령어 입력시 아래와 같이 2026 device의 프로세스만 확인 가능합니다.</p>
+<p><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>bash
+13:40:41 October 17, 2022
++—————————————————————————————————+
+|  Moreh-SMI 22.10.1                              Client Version: 22.10.1  Server Version: 22.10.2  |
++—————————————————————————————————+
+|  Device  |        Name         |      Model     |  Memory Usage  |  Total Memory  |  Utilization  |
++===================================================================================================+
+|  * 2026  |  KT AI Accelerator  |  Medium.128GB  |    22240 MiB   |   131040 MiB   |  -            |
++—————————————————————————————————+</p>
+<p>Processes:
++———————————————————-+
+|  Device  |  Job ID  |  PID  |  Process  |  Memory Usage  |
++==========================================================+
+|    2026  |   37054  |  26515  |  python   |  22240 MiB   |
++———————————————————-+
+<a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a></p>
+<p>—</p>
+<p>## 기타 참고사항</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>한 토큰에 디바이스 생성 limit</strong></dt><dd><ul>
+<li><p><cite>moreh-smi</cite> 커멘드 입력 시 출력 목록에 디바이스가 최대 생성 개수 N개가 있으면 더 이상 생성이 실패하고 제거만 되도록 설정됩니다.</p></li>
+<li><p>디바이스 최대 개수 생성 초과 시 오류 메시지가 등장합니다.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>디바이스 생성 후 자동으로 제거</strong></dt><dd><ul>
+<li><p>디바이스 모델이 자동적으로 할당되고 해제되어 자원 사용이 유동적입니다.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>—</p>
+<p>Copyright © 2022 Moreh Corporation. All rights reserved.</p>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Read the Docs core team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
